@@ -1,0 +1,102 @@
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Bastien Bisson" >
+    <link rel="icon" type="image/png" href="icon.png" />
+    <title>BLABLACAR</title>
+    <!-- Bootstrap core CSS -->
+    <link href="../../../dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- notre feuille CSS -->
+    <link href="starter-template.css" rel="stylesheet">
+    <!-- script pour angularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+    <script src="app.js"></script>
+    <script src="controllers.js"></script>
+
+  </head>
+  <body>
+	   <div class="container marketing" ng-app="app" ng-controller="SearchController as search" >
+		   	<div class="row">
+		   		<div class="col-md-1">
+		   		</div>
+		   		<div class="col-md-10">
+					<div class="starter-template">
+						<h1 id="titrePage">Trouvez votre covoiturage</h1> <!-- Title of the page -->
+						<form class="form-inline" ng-submit="search.fillMatchingTrajets()">
+							<div class="form-group">
+								<input type="text" class="form-control" id="DepartInput" placeholder="DE" ng-model="search.searchInputStart" ng-minlength="2"  />
+							</div> <!-- /.form-group -->
+							<div class="form-group">
+								<input type="text" class="form-control" id="ArriveInput" placeholder="A" ng-model="search.searchInputDestination"/>
+							</div> <!-- /.form-group -->
+							<div class="form-group">
+								<input type="text" class="form-control" id="dateInput" placeholder="jj/MM/aaaa">
+							</div> <!-- /.form-group -->
+							<button type="submit" class="btn btn-default">Rechercher</button>
+						</form>
+						<p class="lead">20 millions de membres avec profil vérifié pour voyager en toute sérénité</p>
+					</div> <!-- /.starter-template -->
+				</div>
+			</div>
+			<div>
+				<div class="row">
+				  <div class="col-md-2"></div>
+				  <div class="col-md-8">
+					  <div ng-if="search.matchingTrajets.length > 0">
+							<div>
+								<div class="row" id="resultat">
+									<div class="col-md-4">
+										<strong>Départ</strong>
+									</div>
+									<div class="col-md-4">
+										<Strong>Arrivée</strong>
+									</div>
+									<div class="col-md-4">
+										<p>Date</p>
+									</div>
+								</div>
+								<div class="row" id="resultatEnTete" ng-repeat="trajet in search.matchingTrajets | orderBy:search.order.key:search.order.reverse">
+									<div class="col-md-4">
+										<strong>{{trajet.depart}}</strong>
+									</div>
+									<div class="col-md-4">
+										<Strong> {{trajet.arrive}}</strong>
+									</div>
+									<div class="col-md-4">
+										<p>{{trajet.date}}</p>
+									</div>	
+								</div>
+							</div>
+					  </div>
+				  </div>
+			 	</div>
+			</div>
+			<div class="row" >
+				<div class="col-md-1">
+				</div>
+				<div class="col-md-3">
+					<img src="femme.png" class="img-circle" alt="Belle femme" width="118" height="118">
+					<p>Avis laissé à Florent S</br> Trajet très agréable, rapide et très sympa. Vous pouvez lui faire confiance, n'hésitez pas à covoiturer avec Florent."</br>
+					Corinne C</p>
+				</div><!-- /.col-md-3 -->
+				<div class="col-md-3">
+					<img src="homme.png" class="img-circle" alt="Belle femme2" width="118" height="118">
+					<p>Avis laissé à Patricia B</br>
+					"Passagers ponctuels et très sympathiques. Le voyage Lyon-Paris est passé très vite."</br>
+					Dominique S</p>
+				</div><!-- /.col-md-3 -->
+				<div class="col-md-3">
+					<img src="femme2.png" class="img-circle" alt="Belle femme" width="118" height="118">
+					<p>Avis laissé à William L</br>
+					"Excellent trajet avec William, très convivial et ponctuel !"</br>
+					Marion C</p>
+				</div><!-- /.col-md-3 -->
+			 </div><!-- /.row -->	
+		</div>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	</body>
+</html> 
+
